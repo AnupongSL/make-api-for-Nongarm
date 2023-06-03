@@ -1,0 +1,61 @@
+@base_url = http://localhost
+
+@port = 3000
+
+@url = {{base_url}}:{{port}}
+
+@user_api = {{url}}/user
+
+@bearerToken = Bearer {{login.response.body.token}}
+
+
+// Manager
+# @name login
+POST {{user_api}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "anupong25",
+    "password": "11111za"
+}
+###
+GET {{user_api}}/getuser HTTP/1.1
+
+
+###
+GET {{user_api}}/getuser/1 HTTP/1.1
+
+###
+GET {{user_api}}/getuserbyusername HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "anupong"
+}
+###
+POST {{user_api}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "fname": "อนุพงศ์",
+    "lname": "ร้านอนุพงศ์",
+    "image": "",
+    "username": "anupong25",
+    "password": "11111za"
+}
+###
+PUT {{user_api}}/update HTTP/1.1
+Authorization: {{bearerToken}}
+Content-Type: application/json
+
+{
+    "fname": "aaaaa",
+    "lname": "ร้านน้องอาม2",
+    "image": "",
+    "username": "anupong25",
+    "password": "999",
+    "newpassword": "123456"
+}
+
+###
+DELETE {{user_api}}/delete/1 HTTP/1.1
